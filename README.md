@@ -1,6 +1,6 @@
 # Sentiment Analysis on NBA leading players' Twitter Accounts 
 It is known that the leading players in a team play a vital role in the game-winning. Hence, we are curious if the players’ emotion before the game will affect their performance or even have an impact on the game result. To measure this effect, we choose Twitter as our tool to measure the players’ sentiment because a majority of NBA players tweet their opinions or mind on twitter. However, it is time-consuming to evaluate each player’s tweet in the league; hence we will be just focusing on the leading players. The leading players here we define are players who have the most followers in each team, which means there will be a total of 30 players in our analysis.
-*see more details on my [blog](https://medium.com/@intelchou/do-tweets-from-nba-leading-players-have-correlations-with-their-performance-7358c79aa216)*
+*See more details on my [blog](https://medium.com/@intelchou/do-tweets-from-nba-leading-players-have-correlations-with-their-performance-7358c79aa216)*
 ## Prerequisites
 Before we start, these packages are required for our analysis:
 ```Python
