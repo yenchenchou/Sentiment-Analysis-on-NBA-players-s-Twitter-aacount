@@ -1,7 +1,9 @@
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from nltk.sentiment.util import *
 from nltk import tokenize
 sid = SentimentIntensityAnalyzer()
+
+
 def sentiment_analysis(insert_processed_sentence):
     """
     Do the sentiment analysis!!
