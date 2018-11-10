@@ -77,6 +77,7 @@ def back_to_clean_sent(token_ls):
     return clean_sent_ls
 
 
+# Put tokens back into to sentence structure (cleaned sentence!)
 sentence_tokenized = [0]*len(df["Tweets"])
 for num, token in enumerate(token_ls):
     sentence_tokenized[num] = back_to_clean_sent(token)
