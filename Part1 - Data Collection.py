@@ -7,6 +7,14 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
+consumer_key = ""
+consumer_secret = ""
+access_token = ""
+access_secret = ""
+auth = OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_secret)
+api = tweepy.API(auth)
+
 # Get the top 10 players name from ESPN.com
 url_player = "http://www.espn.com/nba/story/_/id/24668720/nbarank-2018-19-1-10-best-players-season"
 players = requests.get(url_player)
