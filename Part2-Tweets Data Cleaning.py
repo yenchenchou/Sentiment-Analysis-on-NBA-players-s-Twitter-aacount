@@ -6,16 +6,14 @@ snowballstemmer = SnowballStemmer("english")
 stopwords = stopwords.words('english')
 
 def tweets_cleaner(text):
-    """
-    The function will remove word such as @username,
-    the retweet "RT" symbol, url links, and lower the case.
-    """
+
     semiclean_tweet = []
-    
     for tweet in text:
-        tweet = re.sub(r'RT','',tweet)
         tweet = re.sub(r'@[A-Za-z0-9]+','',tweet)
         tweet = re.sub(r"http\S+", "", tweet)
+        tweet = re.sub(r"#", "", tweet)
+        tweet = re.sub(r",", "", tweet)
+        tweet = re.sub(r"”", "", tweet)
         tweet = tweet.lower()
         semiclean_tweet.append(tweet)
         
@@ -23,15 +21,7 @@ def tweets_cleaner(text):
 
 
 def tokenization_and_stem(semiclean_tweet):
-    """
-    First,
-    This function will parse the string, remove stop words, 
-    and remove most of the raw puctuations. Next, it return an 
-    array with several elements inside.
-    Second,
-    There are two advance stemming methods which can extract the
-    stem words.They are snowballStemmer and WordNetLemmatizer method.
-    """
+
     total_token_ls = []
     total_snowballstemmer_token_ls = []
     total_wordNet_token_ls = []
@@ -42,7 +32,7 @@ def tokenization_and_stem(semiclean_tweet):
         wordNet_token_ls = []
         tokens = nltk.word_tokenize(sentence)
         for token in tokens:
-            if (token not in stopwords) and (re.search('[a-zA-Z]', token)):
+            if token not in stopwords:
                 token_ls.append(token)
                 snowballstemmer_token_ls.append(snowballstemmer.stem(token))
                 wordNet_token_ls.append(wordnet.lemmatize(token))
@@ -77,7 +67,6 @@ def back_to_clean_sent(token_ls):
     return clean_sent_ls
 
 
-# Put tokens back into to sentence structure (cleaned sentence!)
 sentence_tokenized = [0]*len(df["Tweets"])
 for num, token in enumerate(token_ls):
     sentence_tokenized[num] = back_to_clean_sent(token)
@@ -85,7 +74,8 @@ for num, token in enumerate(token_ls):
 sentence_snowstemmeed = [0]*len(df["Tweets"])
 for num, token in enumerate(snowstemmer_token_ls):
     sentence_snowstemmeed[num] = back_to_clean_sent(token)
-
+    
 sentence_wordnetstemmeed = [0]*len(df["Tweets"])
 for num, token in enumerate(wordNet_token_ls):
     sentence_wordnetstemmeed[num] = back_to_clean_sent(token)
+view rawback_to_clean_sent.py hosted with ❤ by GitHub
