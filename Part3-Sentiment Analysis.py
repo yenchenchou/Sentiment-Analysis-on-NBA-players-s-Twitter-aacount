@@ -1,3 +1,4 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from nltk.sentiment.util import *
 from nltk import tokenize
