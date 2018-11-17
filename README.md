@@ -1,13 +1,18 @@
 # Sentiment Analysis on NBA leading players' Twitter Accounts 
-It is known that the leading players in a team play a vital role in the game-winning. Hence, we are curious if the players' emotion before the game will have correlation on their performance or even on the game result. To measure this effect, we choose Twitter as our tool to measure the players' sentiment because a majority of NBA players tweet their opinions or mind on twitter.
-However, it is time-consuming to evaluate each player's tweet in the league; hence we will be just focusing on the top 10 players according to ESPN.com. Now someone may start to debate why those are the best players on each team but here we just use one of the examples website instead of any personal preferences.
+It is known that the leading players in a team play a vital role in the game-winning. Hence, we are curious if the players’ emotion before the game will have correlation on their performance or even on the game result. To measure this effect, we choose Twitter as our tool to measure the players’ sentiment because a majority of NBA players tweet their opinions or mind on twitter.
+
+However, it is time-consuming to evaluate each player’s tweet in the league; hence we will be just focusing on the top 10 players according to ESPN.com. Now someone may start to debate why those are the best players on each team but here we just use one of the examples website instead of any personal preferences.
+
+In the analysis, I will be using Python as the programming language and this topic will involve technics such as web scraping, clustering, data visualization, and natural language processing.
 
 
 *See more details on my [blog](https://medium.com/@intelchou/do-tweets-from-nba-leading-players-have-correlations-with-their-performance-7358c79aa216)*
 
 ## Metrics
 Since the ultimate goal is to measure the correlation between sentiment and game performance. The sentiment here is by calculating the positive or negative score based on polarity and valence. We will discuss this later.
+
 As for the performance, we use Efficient Field Goals(eFG) in this article due to its good balance between simplicity and accuracy.
+
 eFG formula: (FG + 0.5 * 3P) / FGA
 
 ## Prerequisites
@@ -50,11 +55,21 @@ The unnecessary texts include:
 * hash(#): We believe that using hashtags is also a symbol showing stronger emotion on tweets so here we only take out the “#” symbol from the hashtags.
 
 ### Part3 "Sentiment Analysis"
-Now, finally we are ready for the analysis and let us recap some important things we have made:
+We will implement the sentiment analysis to the original tweets, sentence_tokenized, and sentence_snowstemmeed to observe the difference between these methods and check their effect. When talking about sentiment analysis, there are three common types we use and rule-based method will be selected in this chapter because it is easier to apply and there is no need to have an actual training set to train the data.
 
-1. token_ls: word lists that are tokenized
-2. snowstemmer_token_ls: word lists that are tokenized and stemmed in snowball method
-3. wordNet_token_ls: word lists that are tokenized and stemmed in wordnet method
-4. sentence_tokenized: put the tokens in “token_ls” back into sentence structure
-5. sentence_snowstemmeed: put the tokens in “snowstemmer_token_ls” back into sentence structure
-6. sentence_wordnetstemmeed: put the tokens in “wordNet_token_ls” back into sentence structure. The SentimentIntensityAnalyzer() will generate four metrics including positive score, neutral score, negative score, and compound score.
+* Rule-based: Perform sentiment analysis based on a set of predefined rules and sentiment score.
+* Automatic: Using machine learning techniques to learn from data.
+* Hybrid: Combine both rule-based and automatic methods.
+
+### Part4 "K-means Clustering"
+Before begin the clustering, we must create the TF-IDF matrix and model first. TF-IDF refers to Term Frequency–Inverse Document Frequency and it is a product of two statistics that reflect how important a word is to a document in a collection or corpus:
+
+* Term frequency: The weight of a term that occurs in a document is simply proportional to the term frequency.
+* Inverse document frequency: The specificity of a term can be quantified as an inverse function of the number of documents in which it occurs.
+In order to make things simple, here we only use the stemmed sentence and product the TF-IDF matrix. The Tweets_mix is just a list that gathering all the stemmed sentences and only doing so will we able to generate the TF-IDF matrix.
+
+### Part5 "Latent Dirichlet Allocation"
+In this article, we set 3 components since we also have 3 clusters in K-means methods. The n_stop_words means that we are hoping to see the first 3 frequent words in each topic. The number is set to 4 is because of the indexing issue so we have to +1 for the result of 3.
+
+
+
