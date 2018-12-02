@@ -71,5 +71,6 @@ In order to make things simple, here we only use the stemmed sentence and produc
 ### Part5 "Latent Dirichlet Allocation"
 In this article, we set 3 components since we also have 3 clusters in K-means methods. The n_stop_words means that we are hoping to see the first 3 frequent words in each topic. The number is set to 4 is because of the indexing issue so we have to +1 for the result of 3.
 
-
+### Part6 "Data Visualization and Correlation Test"
+we are finally going to see whether there is any statistical correlation between the players' performance on the court with their tweets. However, is our article it points out that there is no any correlation between them under the Pearson correlation test.
 
