@@ -20,20 +20,26 @@ Before we start, these packages are required for our analysis:
 ```Python
 import datetime
 import json
+import matplotlib.pyplot as plt
 import numpy as np
 import nltk
 import pandas as pd
 import requests
 import re
 import tweepy
+import seaborn as sns
 from bs4 import BeautifulSoup
+from tweepy import OAuthHandler
 from nltk.stem.snowball import SnowballStemmer
-from nltk.stem import WordNetLemmatizer
 from nltk.corpus import stopwords
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from nltk.sentiment.util import *
 from nltk import tokenize
-from tweepy import OAuthHandler
+from scipy.stats import pearsonr
+from sklearn.cluster import KMeans
+from sklearn.decomposition import LatentDirichletAllocation
+from sklearn.feature_extraction.text import TfidfVectorizer
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
 ```
 
 ## Processing Steps
